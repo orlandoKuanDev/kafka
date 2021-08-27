@@ -11,10 +11,7 @@ services:
     volumes:
       - ./data/zookeeper/data:/data
       - ./data/zookeeper/datalog:/datalog
-    networks:
-      bank_network:
-        aliases:
-          - bank_net
+    network_mode: host
   kafka1:
     image: wurstmeister/kafka
     container_name: kafka1
@@ -29,11 +26,4 @@ services:
       KAFKA_MESSAGE_MAX_BYTES: 2000000
     volumes:
       - ./data/kafka1/data:/var/lib/kafka/data
-    networks:
-      bank_network:
-        aliases:
-          - bank_net
-networks:
-  bank_network:
-    name: bank_net
-    external: true
+    network_mode: host
